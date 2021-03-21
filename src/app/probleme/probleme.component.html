@@ -1,14 +1,49 @@
     <div class="container">
     <br/>
     <div class="card">
-    <div class="card-header text-black white-secondary">
-    <!-- L'en-tête ici -->
-    </div>
+    <div class="card-header text-black white-secondary">Déclarer un problème</div>
     <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <h5 class="card-title">Veuillez renseigner les zones suivantes et soumettre votre demande</h5>
+    <div class="card-text">
+            <form class="form-horizontal"
+            novalidate
+            (ngSubmit)="save()"
+            [formGroup]="problemForm">
+            <div class="row mb-3">
+            <label for="inputPrenom3" class="col-sm-2 col-form-label">Prenom</label>
+            <div class="col-sm-10">
+                <input class="form-control" 
+            id="prenomId" 
+            type="text" 
+            placeholder="Votre prénom ici (obligatoire)" 
+            formControlName="prenom"            
+            [ngClass]="{'is-valid': (problemForm.get('prenom').touched || 
+            problemForm.get('prenom').dirty) &&
+            (problemForm.get('prenom').valid),
+            'is-invalid': (problemForm.get('prenom').touched || 
+            problemForm.get('prenom').dirty) &&
+            (!problemForm.get('prenom').valid )}"/>
+            </div>
+            </div>
+            <span *ngIf="(problemForm.get('prenom').touched) ||
+                        problemForm.get('prenom').dirty &&
+                        problemForm.get('prenom').errors">
+                    <span *ngIf="problemForm.get('prenom').errors.minlength">
+                        <small class="text-muted">
+                            Veuillez entrer plus de caractères.
+                        </small>  
+                    </span>
+                    <span *ngIf="problemForm.get('prenom').errors.required">
+                        <small class="text-muted">
+                            Merci d'entrer votre prenom.
+                        </small>  
+                    </span>
+                    <span *ngelse>
+                        <small class="text-white"></small>
+                    </span>
+                </span> 
+        </form>    
+        </div>
     </div>
-    <div class="card-footer">
-        <button type="button" class="btn btn-primary">Sauvegarder</button>
     </div>
-    </div> 
+    </div>
