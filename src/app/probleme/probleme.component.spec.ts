@@ -39,9 +39,17 @@ describe('ProblemeComponent', () => {
     expect(zone.valid).toBeTruthy();
   });
 
-  
+  it('Zone PRÉNOM invalide avec aucune valeur', () => {
+    let zone = component.problemForm.controls['prenom'];
+    zone.setValue('a'.repeat(0));
+    expect(zone.valid).toBeFalsy();
+  });
 
-  
+  it('Zone PRÉNOM invalide avec 10 espaces', () => {
+    let zone = component.problemForm.controls['prenom'];
+    zone.setValue(' '.repeat(10));
+    expect(zone.valid).toBeTruthy();
+  });
 
   
 
