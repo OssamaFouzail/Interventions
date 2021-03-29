@@ -14,7 +14,8 @@ export class ProblemeComponent implements OnInit {
 
   ngOnInit(): void {
     this.problemForm = this.fb.group({
-      prenom : ['',[longueurMinimum.longeurMinimum(3), Validators.required]]
+      prenom : ['',[longueurMinimum.longeurMinimum(3), Validators.required]],
+      nom : ['',[Validators.maxLength(50), Validators.required]]
 
     });
   }
